@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Deadrails oh my clumsy</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      color: #333;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      color: #ff69b4;
+      font-size: 2.5em;
+    }
+    .question-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      display: inline-block;
+      margin-top: 30px;
+      width: 80%;
+      max-width: 600px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1.2em;
+      background-color: #ff69b4;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 10px;
+    }
+    button:hover {
+      background-color: #ff1493;
+    }
+    img {
+      width: 280px;
+      max-width: 90%;
+      height: auto;
+      margin-top: 20px;
+      border-radius: 10px;
+      transition: opacity 0.5s ease-in-out;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>mga dautan tara deadrails..</h1>
+  <p> g naba? ano jay or ligo sa lawndale</p>
+
+  <!-- Dynamic Image -->
+  <img id="mainImage" src="images/m5.png" alt="Intro Image" />
+
+  <!-- First Question -->
+  <div id="question1" class="question-container">
+    <p>daming ibas laro na</p> (G/Nuh)</p>
+    <button onclick="handleResponse('yes')">Yes</button>
+    <button onclick="handleResponse('no')">No</button>
+  </div>
+
+  <!-- Follow-up Question -->
+  <div id="question2" class="question-container" style="display: none;">
+    <p>Oh no! ngano man ? buhaton tamo nko tanan 😊</p>
+    <button onclick="handleResponse('still_no')">Still Nuh</button>
+    <button onclick="handleResponse('maybe')">unya na</button>
+    <button onclick="handleResponse('yes')">Okay rata g!</button>
+  </div>
+
+  <!-- Final Message -->
+  <div id="finalMessage" class="question-container" style="display: none;">
+    <p> ez game lng to</p>
+  </div>
+
+  <script>
+    function handleResponse(answer) {
+      const question1 = document.getElementById("question1");
+      const question2 = document.getElementById("question2");
+      const finalMessage = document.getElementById("finalMessage");
+      const mainImage = document.getElementById("mainImage");
+
+      function changeImage(newSrc) {
+        mainImage.style.opacity = 0;
+        setTimeout(() => {
+          mainImage.src = newSrc;
+          mainImage.style.opacity = 1;
+        }, 300);
+      }
+
+      if (answer === "yes") {
+        changeImage("images/m4.png");
+        question1.style.display = "none";
+        question2.style.display = "none";
+        finalMessage.style.display = "block";
+      } else if (answer === "no") {
+        changeImage("images/m1.png");
+        question1.style.display = "none";
+        question2.style.display = "block";
+      } else if (answer === "still_no") {
+        changeImage("images/m2.png");
+        alert("Aw, don't worry! I'll keep asking until you say yes!");
+      } else if (answer === "maybe") {
+        changeImage("images/m3.png");
+        alert("Maybe? I’ll take that as a not-yet! 😊");
+      }
+    }
+  </script>
+
+</body>
+</html>
